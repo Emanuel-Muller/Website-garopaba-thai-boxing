@@ -1,0 +1,546 @@
+/*--------------------------------------------------------------
+# Variáveis de Estilo
+--------------------------------------------------------------*/
+:root {
+    --color-base: #000000;
+    --color-text: #FFFFFF;
+    --color-primary: #FF6600; /* Laranja */
+    --color-secondary: #00BFFF; /* Azul */
+    --color-detail: #FF0000;  /* Vermelho */
+    --color-bg-dark: #111111;
+    
+    /* Tipografia */
+    --font-title: 'Oswald', 'Anton', sans-serif; /* Títulos (H2, H3...) */
+    --font-hero-title: 'Montserrat', sans-serif;  /* Título Principal (H1) */
+    --font-subtitle: 'Quicksand', sans-serif;
+    --font-body: 'Roboto', sans-serif;
+    --font-artistic: 'Patrick Hand', cursive;
+}
+
+/*--------------------------------------------------------------
+# Estilos Globais
+--------------------------------------------------------------*/
+body {
+    background-color: var(--color-base);
+    color: var(--color-text);
+    font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-title);
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.hero-title {
+    font-family: var(--font-hero-title);
+    font-weight: 900;
+    text-transform: none; 
+    font-size: clamp(2.5rem, 6vw, 4.5rem); 
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Suavizado */
+}
+
+.artistic-font {
+    font-family: var(--font-artistic);
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--color-primary);
+    text-transform: none;
+}
+
+section {
+    padding: 5rem 0;
+    overflow: hidden;
+}
+
+.section-title {
+    text-align: center;
+    padding-bottom: 3rem;
+}
+.section-title h2 {
+    font-size: clamp(2.5rem, 5vw, 3rem); /* Responsivo */
+    color: var(--color-primary);
+    position: relative;
+    padding-bottom: 1rem;
+}
+.section-title h2::after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: var(--color-secondary);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/*--------------------------------------------------------------
+# Botões Customizados
+--------------------------------------------------------------*/
+.btn {
+    transition: all 0.3s ease-in-out;
+}
+.btn-primary {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    font-family: var(--font-title);
+    text-transform: uppercase;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+}
+.btn-primary:hover {
+    background-color: var(--color-secondary);
+    border-color: var(--color-secondary);
+    color: var(--color-text);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 191, 255, 0.3);
+}
+
+.btn-secondary {
+    background-color: var(--color-secondary);
+    border-color: var(--color-secondary);
+    font-family: var(--font-title);
+    text-transform: uppercase;
+    padding: 0.5rem 1.25rem;
+}
+.btn-secondary:hover {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-text);
+    transform: translateY(-2px);
+}
+
+/*--------------------------------------------------------------
+# Header (Navbar) 
+--------------------------------------------------------------*/
+.navbar {
+    
+    background-color: var(--color-base); 
+    transition: padding 0.3s ease, background-color 0.3s ease;
+    padding: 1rem 0;
+    
+}
+.navbar.navbar-shrink {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    background-color: var(--color-base) !important; 
+   
+    box-shadow: 0 4px 15px rgba(255, 102, 0, 0.15);
+}
+
+
+.navbar-brand img {
+    max-height: 50px;
+    
+    transition: max-height 0.3s ease;
+}
+.navbar.navbar-shrink .navbar-brand img {
+    max-height: 40px;
+}
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.8);
+    font-family: var(--font-title);
+    text-transform: uppercase;
+    padding: 0.75rem 1rem; 
+    transition: color 0.3s;
+}
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link.active {
+    color: var(--color-primary);
+}
+.navbar-toggler {
+    border-color: rgba(255, 102, 0, 0.5);
+}
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 102, 0, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/*--------------------------------------------------------------
+# Hero Section (Carousel) 
+--------------------------------------------------------------*/
+#heroCarousel {
+   
+    height: 90vh; /* Ajustado de 100vh para compensar a navbar estática */
+    min-height: 600px;
+}
+#heroCarousel .carousel-item {
+    height: 90vh;
+    min-height: 600px;
+    background-size: cover;
+    background-position: center;
+}
+#heroCarousel .carousel-item::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.65); 
+    transition: background-color 0.3s ease;
+}
+#heroCarousel .carousel-caption {
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%);
+    text-align: center;
+}
+#heroCarousel .carousel-caption .lead {
+    font-family: var(--font-subtitle);
+    font-size: clamp(1.25rem, 3vw, 1.5rem); 
+    margin-bottom: 1rem;
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    padding: 1.5rem;
+    background-size: 50%;
+}
+
+/*--------------------------------------------------------------
+# Sobre 
+--------------------------------------------------------------*/
+#sobre {
+    background-color: var(--color-base);
+}
+#sobre img {
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(255, 102, 0, 0.2);
+}
+#sobre p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+.about-text-block {
+    position: relative;
+    padding-left: 2rem;
+}
+.about-text-block::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background-color: var(--color-secondary);
+    border-radius: 2px;
+}
+
+
+/*--------------------------------------------------------------
+# Modalidades 
+--------------------------------------------------------------*/
+#modalidades {
+    background-color: var(--color-bg-dark);
+}
+.modalidade-card {
+    background-color: var(--color-base);
+    border: 1px solid #222;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+.modalidade-card:hover {
+    transform: translateY(-5px) scale(1.03); 
+    box-shadow: 0 10px 30px rgba(0, 191, 255, 0.2), -5px -5px 15px rgba(255, 102, 0, 0.1);
+}
+.modalidade-card img {
+    border-bottom: 3px solid var(--color-primary);
+    transition: transform 0.3s ease;
+}
+.modalidade-card:hover img {
+    transform: scale(1.05);
+}
+.modalidade-card .card-body {
+    padding: 2rem;
+}
+.modalidade-card .card-title {
+    color: var(--color-primary);
+    font-size: 2rem;
+}
+
+/*--------------------------------------------------------------
+# Corpo Docente 
+--------------------------------------------------------------*/
+#docentes {
+    background-color: var(--color-base);
+}
+.docente-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+.docente-card img {
+    transition: transform 0.4s ease, filter 0.4s ease;
+    width: 100%;
+}
+.docente-info {
+    position: absolute;
+    bottom: -100%; 
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 191, 255, 0.95), rgba(0, 191, 255, 0.7));
+    padding: 2rem; 
+    transition: bottom 0.4s ease-in-out;
+}
+.docente-card:hover .docente-info {
+    bottom: 0; 
+}
+.docente-card:hover img {
+    transform: scale(1.1);
+    filter: blur(2px);
+}
+.docente-info h4 {
+    font-family: var(--font-title);
+    color: var(--color-text);
+    font-size: 1.75rem;
+    margin-bottom: 0.25rem;
+}
+.docente-info p {
+    font-family: var(--font-subtitle);
+    color: var(--color-base);
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+/*--------------------------------------------------------------
+# Horários 
+--------------------------------------------------------------*/
+#horarios {
+    background-color: var(--color-bg-dark);
+}
+.table {
+    border-color: #333;
+    min-width: 800px; 
+}
+.table thead th {
+    color: var(--color-primary);
+    font-family: var(--font-title);
+    font-size: 1.25rem;
+    text-align: center;
+    vertical-align: middle;
+}
+.table tbody td {
+    font-family: var(--font-subtitle);
+    vertical-align: middle;
+    height: 100px;
+}
+.table-dark {
+    --bs-table-bg: #1a1a1a;
+}
+.table tbody td:not(:empty) {
+    background-color: rgba(255, 102, 0, 0.1);
+    font-weight: 700;
+    color: var(--color-text);
+    transition: background-color 0.3s ease;
+}
+.table tbody td:not(:empty):hover {
+    background-color: rgba(255, 102, 0, 0.3);
+    color: #fff;
+}
+
+.table-responsive::-webkit-scrollbar {
+    height: 8px;
+}
+.table-responsive::-webkit-scrollbar-track {
+    background: #222;
+    border-radius: 4px;
+}
+.table-responsive::-webkit-scrollbar-thumb {
+    background-color: var(--color-primary);
+    border-radius: 4px;
+}
+.table-responsive::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-secondary);
+}
+
+/*--------------------------------------------------------------
+# Galeria
+--------------------------------------------------------------*/
+#galeria {
+    background-color: var(--color-base);
+}
+#galeriaCarousel .carousel-item img {
+    border-radius: 8px;
+    filter: grayscale(60%); 
+    transition: filter 0.5s ease, transform 0.5s ease;
+}
+#galeriaCarousel .carousel-item img:hover {
+    filter: grayscale(0%) saturate(1.2); 
+    transform: scale(1.05);
+}
+
+/*--------------------------------------------------------------
+# Contato 
+--------------------------------------------------------------*/
+#contato {
+    background-color: var(--color-bg-dark);
+}
+.info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    justify-content: flex-start; 
+}
+.info-item i {
+    font-size: 2.5rem;
+    color: var(--color-secondary);
+    margin-right: 1.5rem;
+    width: 50px;
+    flex-shrink: 0;
+}
+.info-item div {
+    display: flex;
+    flex-direction: column;
+}
+.info-item p {
+    margin: 0;
+    font-family: var(--font-subtitle);
+    font-size: 1.1rem;
+}
+.info-item a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.3s;
+    font-family: var(--font-subtitle);
+    font-size: 1.1rem;
+}
+.info-item a:hover {
+    color: var(--color-secondary);
+}
+
+/* Estilo do Formulário*/
+.php-email-form {
+    background-color: var(--color-base); 
+    padding: 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    border: 1px solid #222;
+}
+
+.form-control, .form-control:focus {
+    background-color: transparent; 
+    color: var(--color-text);
+    border: 0; 
+    border-bottom: 2px solid #444; 
+    border-radius: 0; 
+    padding: 0.75rem 0.25rem; 
+    box-shadow: none; 
+    transition: border-color 0.3s ease-in-out;
+}
+.form-control:focus {
+    border-bottom-color: var(--color-primary); 
+}
+.form-label {
+    font-family: var(--font-subtitle);
+    color: #ccc; 
+    margin-bottom: 0.5rem;
+}
+
+/* Estilo para o iframe do mapa */
+#contato iframe {
+    width: 100%;
+    height: 350px; 
+    border: 0;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    filter: grayscale(70%) invert(10%) brightness(80%); 
+    transition: all 0.5s ease;
+}
+#contato iframe:hover {
+    filter: grayscale(0%) invert(0%) brightness(100%); 
+}
+
+/*--------------------------------------------------------------
+# Rodapé 
+--------------------------------------------------------------*/
+footer {
+    background-color: #0b0b0b; 
+    border-top: 1px solid #222;
+    padding: 3rem 0;
+}
+footer .logo-footer img {
+    max-height: 150px;
+    margin-bottom: 1rem;
+    
+}
+footer .call-to-action-footer {
+    font-family: var(--font-subtitle);
+    font-size: 1.1rem;
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+}
+footer .copyright {
+    color: #888;
+    font-size: 0.9rem;
+}
+footer .social-links a {
+    font-size: 1.75rem;
+    color: var(--color-text);
+    margin: 0 0.75rem;
+    transition: color 0.3s, transform 0.3s, text-shadow 0.3s;
+}
+footer .social-links a:hover {
+    color: var(--color-primary);
+    transform: translateY(-3px);
+    text-shadow: 0 0 10px rgba(255, 102, 0, 0.7);
+}
+
+
+/*--------------------------------------------------------------
+# Melhorias de Responsividade (Mobile)
+--------------------------------------------------------------*/
+@media (max-width: 991px) {
+    .navbar-nav {
+        text-align: center;
+        padding-top: 1rem;
+    }
+    .navbar-dark .navbar-nav .nav-link {
+        padding: 1rem 0; 
+    }
+}
+
+@media (max-width: 768px) {
+    section {
+        padding: 3rem 0;
+    }
+
+    .docente-card:hover img {
+        transform: scale(1); 
+        filter: none; 
+    }
+    .docente-info {
+        position: static; 
+        padding: 1.5rem;
+        background: var(--color-secondary); 
+    }
+    .docente-info h4 {
+        color: var(--color-base);
+    }
+
+    .btn, .btn-lg {
+        width: 100%;
+    }
+    #heroCarousel .btn-lg {
+        width: auto; 
+    }
+    .modalidade-card .btn {
+        width: auto; 
+    }
+
+    #heroCarousel .carousel-item::before {
+        background: rgba(0, 0, 0, 0.75);
+    }
+    
+    .about-text-block {
+        padding-left: 1.5rem;
+    }
+    .about-text-block::before {
+        width: 3px;
+    }
+
+    .info-item {
+        justify-content: center;
+    }
+}
