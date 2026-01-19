@@ -166,8 +166,9 @@ section {
 #heroCarousel .carousel-item {
     height: 90vh;
     min-height: 600px;
-    background-size: cover;
+    background-size: contain;
     background-position: center;
+    background-repeat: no-repeat;
 }
 #heroCarousel .carousel-item::before {
     content: '';
